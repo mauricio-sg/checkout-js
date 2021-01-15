@@ -23,6 +23,7 @@ export interface SingleShippingFormProps {
     countriesWithAutocomplete: string[];
     customerMessage: string;
     googleMapsApiKey?: string;
+    isActive?: boolean;
     isLoading: boolean;
     isShippingStepPending: boolean;
     isMultiShippingMode: boolean;
@@ -104,6 +105,7 @@ class SingleShippingForm extends PureComponent<SingleShippingFormProps & WithLan
             consignments,
             shouldShowOrderComments,
             initialize,
+            isActive,
             isValid,
             deinitialize,
             values: { shippingAddress: addressForm },
@@ -132,6 +134,7 @@ class SingleShippingForm extends PureComponent<SingleShippingFormProps & WithLan
                         googleMapsApiKey={ googleMapsApiKey }
                         hasRequestedShippingOptions={ hasRequestedShippingOptions }
                         initialize={ initialize }
+                        isActive={ isActive }
                         isLoading={ isResettingAddress }
                         isShippingStepPending={ isShippingStepPending }
                         methodId={ methodId }

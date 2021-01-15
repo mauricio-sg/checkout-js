@@ -344,6 +344,7 @@ class Checkout extends Component<CheckoutProps & WithCheckoutProps & WithLanguag
                 <LazyContainer>
                     <Shipping
                         cartHasChanged={ hasCartChanged }
+                        isActive={ step.isActive }
                         isMultiShippingMode={ isMultiShippingMode }
                         navigateNextStep={ this.handleShippingNextStep }
                         onCreateAccount={ this.handleShippingCreateAccount }

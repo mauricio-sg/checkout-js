@@ -2,10 +2,12 @@ import { Address, CheckoutSelectors, Consignment, Country, CustomerAddress, Form
 import { memoizeOne } from '@bigcommerce/memoize';
 import { noop } from 'lodash';
 import React, { memo, useCallback, useContext, FunctionComponent } from 'react';
+// import { CSSTransition } from 'react-transition-group';
 
 import { FormContext } from '../ui/form';
 
 import RemoteShippingAddress from './RemoteShippingAddress';
+import './ShippingAddress.scss';
 import ShippingAddressForm from './ShippingAddressForm';
 import StaticAddressEditable from './StaticAddressEditable';
 
@@ -16,6 +18,7 @@ export interface ShippingAddressProps {
     countriesWithAutocomplete: string[];
     formFields: FormField[];
     googleMapsApiKey?: string;
+    isActive?: boolean;
     isLoading: boolean;
     isShippingStepPending: boolean;
     methodId?: string;
@@ -41,6 +44,7 @@ const ShippingAddress: FunctionComponent<ShippingAddressProps> = props => {
         onAddressSelect,
         onFieldChange,
         onUseNewAddress,
+        isActive,
         initialize,
         deinitialize,
         isLoading,
@@ -103,16 +107,23 @@ const ShippingAddress: FunctionComponent<ShippingAddressProps> = props => {
             };
 
             return (
-                <StaticAddressEditable
-                    address={ shippingAddress }
-                    buttonId={ editAddressButtonId }
-                    deinitialize={ deinitialize }
-                    formFields={ formFields }
-                    initialize={ initializeShipping(options) }
-                    isLoading={ isShippingStepPending }
-                    methodId={ methodId }
-                    onFieldChange={ onFieldChange }
-                />
+                // <CSSTransition
+                //     classNames="fade"
+                //     in={ isActive }
+                //     timeout={ {} }
+                // >
+                    // isActive && <StaticAddressEditable
+                    <StaticAddressEditable
+                        address={ shippingAddress }
+                        buttonId={ editAddressButtonId }
+                        deinitialize={ deinitialize }
+                        formFields={ formFields }
+                        initialize={ initializeShipping(options) }
+                        isLoading={ isShippingStepPending }
+                        methodId={ methodId }
+                        onFieldChange={ onFieldChange }
+                    />
+                // </CSSTransition>
             );
         }
     }

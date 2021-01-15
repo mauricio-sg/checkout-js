@@ -109,6 +109,7 @@ export default class CheckoutStep extends Component<CheckoutStepProps> {
                         <div
                             className="checkout-view-content"
                             ref={ this.contentRef }
+                            style={ { border: '1px solid blue' } }
                         >
                             { children }
                         </div>

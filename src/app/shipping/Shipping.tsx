@@ -18,6 +18,7 @@ import { SingleShippingFormValues } from './SingleShippingForm';
 
 export interface ShippingProps {
     cartHasChanged: boolean;
+    isActive?: boolean;
     isMultiShippingMode: boolean;
     onCreateAccount(): void;
     onToggleMultiShipping(): void;
@@ -101,6 +102,7 @@ class Shipping extends Component<ShippingProps & WithCheckoutShippingProps, Ship
             customer,
             unassignItem,
             updateShippingAddress,
+            isActive,
             initializeShippingMethod,
             deinitializeShippingMethod,
             isMultiShippingMode,
@@ -114,12 +116,14 @@ class Shipping extends Component<ShippingProps & WithCheckoutShippingProps, Ship
 
         return (
             <div className="checkout-form">
-                <ShippingHeader
-                    isGuest={ isGuest }
-                    isMultiShippingMode={ isMultiShippingMode }
-                    onMultiShippingChange={ onToggleMultiShipping }
-                    shouldShowMultiShipping={ shouldShowMultiShipping }
-                />
+                {
+                    isActive && <ShippingHeader
+                        isGuest={ isGuest }
+                        isMultiShippingMode={ isMultiShippingMode }
+                        onMultiShippingChange={ onToggleMultiShipping }
+                        shouldShowMultiShipping={ shouldShowMultiShipping }
+                    />
+                }
 
                 <LoadingOverlay
                     isLoading={ isInitializing }
@@ -130,6 +134,7 @@ class Shipping extends Component<ShippingProps & WithCheckoutShippingProps, Ship
                         addresses={ customer.addresses }
                         deinitialize={ deinitializeShippingMethod }
                         initialize={ initializeShippingMethod }
+                        isActive={ isActive }
                         isGuest={ isGuest }
                         isMultiShippingMode={ isMultiShippingMode }
                         onMultiShippingSubmit={ this.handleMultiShippingSubmit }

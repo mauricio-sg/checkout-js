@@ -50,22 +50,24 @@ const CheckoutStepHeader: FunctionComponent<CheckoutStepHeaderProps> = ({
                 </h2>
             </div>
 
-            <div
-                className="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary"
-                data-test="step-info"
-            >
-                { !isActive && isComplete && summary }
-            </div>
-
-            { isEditable && !isActive && <div className="stepHeader-actions stepHeader-column">
-                <Button
-                    size={ ButtonSize.Tiny }
-                    testId="step-edit-button"
-                    variant={ ButtonVariant.Secondary }
+            <div style={ { border: '1px solid red', display: 'flex', width: '100%' } }>
+                <div
+                    className="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary"
+                    data-test="step-info"
                 >
-                    <TranslatedString id="common.edit_action" />
-                </Button>
-            </div> }
+                    { !isActive && isComplete && summary }
+                </div>
+
+                { isEditable && !isActive && <div className="stepHeader-actions stepHeader-column">
+                    <Button
+                        size={ ButtonSize.Tiny }
+                        testId="step-edit-button"
+                        variant={ ButtonVariant.Secondary }
+                    >
+                        <TranslatedString id="common.edit_action" />
+                    </Button>
+                </div> }
+            </div>
         </a>
     );
 };
